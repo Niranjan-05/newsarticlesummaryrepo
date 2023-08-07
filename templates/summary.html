@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summary of {{ headline }}</title>
+    <style>
+        body {
+            font-family: "Open Sans", Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #333333;
+            text-align: center;
+            font-size: 24px;
+        }
+        
+        .summary {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(255, 0, 0, 0.5);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border: 1px solid #faintred;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dddddd;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="summary">
+        <h1>Summarized news for "{{ headline }}"</h1>
+        <hr>
+        <p>{{ summary }}</p>
+    </div>
+</body>
+</html>

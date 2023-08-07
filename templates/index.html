@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Headlines</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 80%;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .summary-box {
+            flex-basis: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .summary-box label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .summary-box button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .summary-box button:hover {
+            background-color: #45a049;
+        }
+
+        .section-column {
+            flex-basis: 30%;
+            border: 1px solid #f55;
+            padding: 10px;
+            margin: 5px;
+            background-color: #fff;
+            border-radius: 5px;
+            text-align: justify;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: 0;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+    <script>
+        function handleCheckboxClick(event) {
+            const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${event.target.name}"]`);
+            checkboxes.forEach(checkbox => {
+                if (checkbox !== event.target) {
+                    checkbox.checked = false;
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>News Headlines</h1>
+    <form action="/summary" method="post">
+        <div class="summary-box">
+            <label for="max_length">Enter a maximum summary length (in words):</label>
+            <input type="number" name="max_length" id="max_length" value="100">
+            <button type="submit">Summarize</button>
+        </div>
+        <hr>
+        <div class="section-column">
+            <h2>TOP STORIES</h2>
+            {% for headline in headlines %}
+            <div>
+                <label>
+                    <input type="checkbox" name="headline" value="{{ headline }}" id="{{ headline }}" onclick="handleCheckboxClick(event)">
+                    {{ headline }}
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="section-column">
+            <h2>INTERNATIONAL</h2>
+            {% for int_headline in int_headlines %}
+            <div>
+                <label>
+                    <input type="checkbox" name="headline" value="{{ int_headline }}" id="{{ int_headline }}" onclick="handleCheckboxClick(event)">
+                    {{ int_headline }}
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="section-column">
+            <h2>BUSINESS</h2>
+            {% for business_headline in business_headlines %}
+            <div>
+                <label>
+                    <input type="checkbox" name="headline" value="{{ business_headline }}" id="{{ business_headline }}" onclick="handleCheckboxClick(event)">
+                    {{ business_headline }}
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+    </form>
+</body>
+</html>
